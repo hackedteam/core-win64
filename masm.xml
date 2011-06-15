@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectSchemaDefinitions xmlns="clr-namespace:Microsoft.Build.Framework.XamlTypes;assembly=Microsoft.Build.Framework" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:transformCallback="Microsoft.Cpp.Dev10.ConvertPropertyCallback">
+  <Rule
+    Name="MASM"
+    PageTemplate="tool"
+    DisplayName="Microsoft Macro Assembler for x64"
+    Order="200">
+    <Rule.DataSource>
+      <DataSource
+        Persistence="ProjectFile"
+        ItemType="MASM" />
+    </Rule.DataSource>
+    <Rule.Categories>
+      <Category
+        Name="General">
+        <Category.DisplayName>
+          <sys:String>General</sys:String>
+        </Category.DisplayName>
+      </Category>
+      <Category
+        Name="Command Line"
+        Subtype="CommandLine">
+        <Category.DisplayName>
+          <sys:String>Command Line</sys:String>
+        </Category.DisplayName>
+      </Category>
+    </Rule.Categories>
+    <StringListProperty
+      Name="Inputs"
+      Category="Command Line"
+      IsRequired="true"
+      Switch=" ">
+      <StringListProperty.DataSource>
+        <DataSource
+          Persistence="ProjectFile"
+          ItemType="MASM"
+          SourceType="Item" />
+      </StringListProperty.DataSource>
+    </StringListProperty>
+    <BoolProperty
+      Name="NoLogo"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Suppress Startup Banner"
+      Description="Suppress the display of the startup banner and information messages.     (/nologo)"
+      Switch="/nologo" />
+    <BoolProperty
+      Name="TinyMemoryModelSupport"
+      Category="Advanced"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Tiny Memory Model Support"
+      Description="Enables tiny-memory-model support. Note that this is not equivalent to the .MODEL TINY directive.     (/AT)"
+      Switch="/AT" />
+    <BoolProperty
+      Name="GeneratePreprocessedSourceListing"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Generate Preprocessed Source Listing"
+      Description="Generates a preprocessed source listing to the Output Window.     (/EP)"
+      Switch="/EP" />
+    <BoolProperty
+      Name="ListAllAvailableInformation"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="List All Available Information"
+      Description="Turns on listing of all available information.     (/Sa)"
+      Switch="/Sa" />
+    <BoolProperty
+      Name="UseSafeExceptionHandlers"
+      Category="Advanced"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Use Safe Exception Handlers"
+      Description="Marks the object as either containing no exception handlers or containing exception handlers that are all declared with .SAFESEH.     (/safeseh)"
+      Switch="/safeseh" />
+    <BoolProperty
+      Name="AddFirstPassListing"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Add First Pass Listing"
+      Description="Adds first-pass listing to listing file.     (/Sf)"
+      Switch="/Sf" />
+    <BoolProperty
+      Name="EnableAssemblyGeneratedCodeListing"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Enable Assembly Generated Code Listing"
+      Description="Turns on listing of assembly-generated code.     (/Sg)"
+      Switch="/Sg" />
+    <BoolProperty
+      Name="DisableSymbolTable"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Disable Symbol Table"
+      Description="Turns off symbol table when producing a listing.     (/Sn)"
+      Switch="/Sn" />
+    <BoolProperty
+      Name="EnableFalseConditionalsInListing"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Enable False Conditionals In Listing"
+      Description="Turns on false conditionals in listing.     (/Sx)"
+      Switch="/Sx" />
+    <BoolProperty
+      Name="TreatWarningsAsErrors"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Treat Warnings As Errors"
+      Description="Returns an error code if warnings are generated.     (/WX)"
+      Switch="/WX" />
+    <BoolProperty
+      Name="MakeAllSymbolsPublic"
+      Category="Object File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Make All Symbols Public"
+      Description="Makes all symbols public.     (/Zf)"
+      Switch="/Zf" />
+    <BoolProperty
+      Name="GenerateDebugInformation"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Generate Debug Information"
+      Description="Generates Debug Information.     (/Zi)"
+      Switch="/Zi" />
+    <BoolProperty
+      Name="EnableMASM51Compatibility"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Enable MASM 5.1 Compatibility"
+      Description="Enables M510 option for maximum compatibility with MASM 5.1.     (/Zm)"
+      Switch="/Zm" />
+    <BoolProperty
+      Name="PerformSyntaxCheckOnly"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Perform Syntax Check Only"
+      Description="Performs a syntax check only.     (/Zs)"
+      Switch="/Zs" />
+    <StringProperty
+      Name="ObjectFileName"
+      Category="Object File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Object File Name"
+      Description="Specifies the name of the output object file.     (/Fo:[file])"
+      Switch="/Fo&quot;[value]&quot;" />
+    <StringListProperty
+      Name="PreprocessorDefinitions"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Preprocessor Definitions"
+      Description="Defines a text macro with the given name.     (/D[symbol])"
+      Separator=";"
+      Switch="/D&quot;[value]&quot;" />
+    <StringProperty
+      Name="AssembledCodeListingFile"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Assembled Code Listing File"
+      Description="Generates an assembled code listing file.     (/Fl[file])"
+      Switch="/Fl&quot;[value]&quot;" />
+    <StringProperty
+      Name="SourceListingLineWidth"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Source Listing Line Width"
+      Description="Sets the line width of source listing in characters per line. Range is 60 to 255. Same as PAGE width.     (/Sl [width])"
+      Switch="/Sl [value]" />
+    <StringProperty
+      Name="SourceListingPageLength"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Source Listing Page Length"
+      Description="Sets the page length of source listing in lines per page. Range is 10 to 255. Same as PAGE length.     (/Sp [length])"
+      Switch="/Sp [value]" />
+    <StringListProperty
+      Name="IncludePaths"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Include Paths"
+      Description="Sets path for include file. A maximum of 10 /I options is allowed.     (/I [path])"
+      Separator=";"
+      Switch="/I &quot;[value]&quot;" />
+    <StringProperty
+      Name="SourceListingSubTitle"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Source Listing Subtitle"
+      Description="Specifies subtitle text for source listing. Same as SUBTITLE text.     (/Ss [subtitle])"
+      Switch="/Ss [value]" />
+    <StringProperty
+      Name="SourceListingTitle"
+      Category="Listing File"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Source Listing Title"
+      Description="Specifies title for source listing. Same as TITLE text.     (/St [title])"
+      Switch="/St [value]" />
+    <StringListProperty
+      Name="BrowseFile"
+      Category="Advanced"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Generate Browse Information File"
+      Description="Specifies whether to generate browse information file and its optional name or location of the browse information file.     (/FR[name])"
+      Separator=";"
+      Switch="/FR&quot;[value]&quot;" />
+    <EnumProperty
+      Name="PreserveIdentifierCase"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Preserve Identifier Case"
+      Description="Specifies preservation of case of user identifiers.     (/Cp, /Cu, /Cx)">
+      <EnumValue
+        Name="0"
+        DisplayName="Default" />
+      <EnumValue
+        Name="1"
+        DisplayName="Preserves Identifier Case (/Cp)"
+        Switch="/Cp" />
+      <EnumValue
+        Name="2"
+        DisplayName="Maps all identifiers to upper case. (/Cu)"
+        Switch="/Cu" />
+      <EnumValue
+        Name="3"
+        DisplayName="Preserves case in public and extern symbols. (/Cx)"
+        Switch="/Cx" />
+    </EnumProperty>
+    <EnumProperty
+      Name="WarningLevel"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Warning Level"
+      Description="Sets the warning level, where level = 0, 1, 2, or 3.    (/W0, /W1, /W2, /W3)">
+      <EnumValue
+        Name="0"
+        DisplayName="Warning Level 0 (/W0)"
+        Switch="/W0" />
+      <EnumValue
+        Name="1"
+        DisplayName="Warning Level 1 (/W1)"
+        Switch="/W1" />
+      <EnumValue
+        Name="2"
+        DisplayName="Warning Level 2 (/W2)"
+        Switch="/W2" />
+      <EnumValue
+        Name="3"
+        DisplayName="Warning Level 3 (/W3)"
+        Switch="/W3" />
+    </EnumProperty>
+    <EnumProperty
+      Name="PackAlignmentBoundary"
+      Category="Advanced"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Pack Alignment Boundary"
+      Description="Packs structures on the specified byte boundary. The alignment can be 1, 2, 4, 8 or 16.     (/Zp1, /Zp2, /Zp4, /Zp8, /Zp16)">
+      <EnumValue
+        Name="0"
+        DisplayName="Default" />
+      <EnumValue
+        Name="1"
+        DisplayName="One Byte Boundary (/Zp1)"
+        Switch="/Zp1" />
+      <EnumValue
+        Name="2"
+        DisplayName="Two Byte Boundary (/Zp2)"
+        Switch="/Zp2" />
+      <EnumValue
+        Name="3"
+        DisplayName="Four Byte Boundary (/Zp4)"
+        Switch="/Zp4" />
+      <EnumValue
+        Name="4"
+        DisplayName="Eight Byte Boundary (/Zp8)"
+        Switch="/Zp8" />
+      <EnumValue
+        Name="5"
+        DisplayName="Sixteen Byte Boundary (/Zp16)"
+        Switch="/Zp16" />
+    </EnumProperty>
+    <EnumProperty
+      Name="CallingConvention"
+      Category="Advanced"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Calling Convention"
+      Description="Selects calling convention for your application.     (/Gc, /Gd. /Gz)">
+      <EnumValue
+        Name="0"
+        DisplayName="Default" />
+      <EnumValue
+        Name="1"
+        DisplayName="Use C-style Calling Convention (/Gd)"
+        Switch="/Gd" />
+      <EnumValue
+        Name="2"
+        DisplayName="Use stdcall Calling Convention (/Gz)"
+        Switch="/Gz" />
+      <EnumValue
+        Name="3"
+        DisplayName="Use Pascal Calling Convention (/Gc)"
+        Switch="/Gc" />
+    </EnumProperty>
+    <EnumProperty
+      Name="ErrorReporting"
+      Category="Advanced"
+      HelpContext="0"
+      HelpUrl="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vcmasm/html/vclrfml.asp"
+      DisplayName="Error Reporting"
+      Description="Reports internal assembler errors to Microsoft.     (/errorReport:[method])">
+      <EnumValue
+        Name="0"
+        DisplayName="Prompt to send report immediately (/errorReport:prompt)"
+        Switch="/errorReport:prompt" />
+      <EnumValue
+        Name="1"
+        DisplayName="Prompt to send report at the next logon (/errorReport:queue)"
+        Switch="/errorReport:queue" />
+      <EnumValue
+        Name="2"
+        DisplayName="Automatically send report (/errorReport:send)"
+        Switch="/errorReport:send" />
+      <EnumValue
+        Name="3"
+        DisplayName="Do not send report (/errorReport:none)"
+        Switch="/errorReport:none" />
+    </EnumProperty>
+    <StringProperty
+      Name="CommandLineTemplate"
+      DisplayName="Command Line"
+      Visible="False"
+      IncludeInCommandLine="False" />
+    <DynamicEnumProperty
+      Name="MASMBeforeTargets"
+      Category="General"
+      EnumProvider="Targets"
+      IncludeInCommandLine="False">
+      <DynamicEnumProperty.DisplayName>
+        <sys:String>Execute Before</sys:String>
+      </DynamicEnumProperty.DisplayName>
+      <DynamicEnumProperty.Description>
+        <sys:String>Specifies the targets for the build customization to run before.</sys:String>
+      </DynamicEnumProperty.Description>
+      <DynamicEnumProperty.ProviderSettings>
+        <NameValuePair
+          Name="Exclude"
+          Value="^MASMBeforeTargets|^Compute" />
+      </DynamicEnumProperty.ProviderSettings>
+      <DynamicEnumProperty.DataSource>
+        <DataSource
+          Persistence="ProjectFile"
+          HasConfigurationCondition="true" />
+      </DynamicEnumProperty.DataSource>
+    </DynamicEnumProperty>
+    <DynamicEnumProperty
+      Name="MASMAfterTargets"
+      Category="General"
+      EnumProvider="Targets"
+      IncludeInCommandLine="False">
+      <DynamicEnumProperty.DisplayName>
+        <sys:String>Execute After</sys:String>
+      </DynamicEnumProperty.DisplayName>
+      <DynamicEnumProperty.Description>
+        <sys:String>Specifies the targets for the build customization to run after.</sys:String>
+      </DynamicEnumProperty.Description>
+      <DynamicEnumProperty.ProviderSettings>
+        <NameValuePair
+          Name="Exclude"
+          Value="^MASMAfterTargets|^Compute" />
+      </DynamicEnumProperty.ProviderSettings>
+      <DynamicEnumProperty.DataSource>
+        <DataSource
+          Persistence="ProjectFile"
+          ItemType=""
+          HasConfigurationCondition="true" />
+      </DynamicEnumProperty.DataSource>
+    </DynamicEnumProperty>
+    <StringListProperty
+      Name="Outputs"
+      DisplayName="Outputs"
+      Visible="False"
+      IncludeInCommandLine="False" />
+    <StringProperty
+      Name="ExecutionDescription"
+      DisplayName="Execution Description"
+      Visible="False"
+      IncludeInCommandLine="False" />
+    <StringListProperty
+      Name="AdditionalDependencies"
+      DisplayName="Additional Dependencies"
+      IncludeInCommandLine="False"
+      Visible="false" />
+    <StringProperty
+      Subtype="AdditionalOptions"
+      Name="AdditionalOptions"
+      Category="Command Line">
+      <StringProperty.DisplayName>
+        <sys:String>Additional Options</sys:String>
+      </StringProperty.DisplayName>
+      <StringProperty.Description>
+        <sys:String>Additional Options</sys:String>
+      </StringProperty.Description>
+    </StringProperty>
+  </Rule>
+  <ItemType
+    Name="MASM"
+    DisplayName="Microsoft Macro Assembler for x64" />
+  <FileExtension
+    Name="*.asm"
+    ContentType="MASM" />
+  <ContentType
+    Name="MASM"
+    DisplayName="Microsoft Macro Assembler for x64"
+    ItemType="MASM" />
+</ProjectSchemaDefinitions>

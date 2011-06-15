@@ -1,0 +1,4 @@
+LIBRARY	H64DLL
+EXPORTS 
+	HFF9  = H64_MakeHooking
+	HFF10 = H64_sMain

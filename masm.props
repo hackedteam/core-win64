@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup
+    Condition="'$(MASMBeforeTargets)' == '' and '$(MASMAfterTargets)' == '' and '$(ConfigurationType)' != 'Makefile'">
+    <MASMBeforeTargets>Midl</MASMBeforeTargets>
+    <MASMAfterTargets>CustomBuild</MASMAfterTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MASMDependsOn
+      Condition="'$(ConfigurationType)' != 'Makefile'">_SelectedFiles;$(MASMDependsOn)</MASMDependsOn>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <MASM>
+      <NoLogo>true</NoLogo>
+      <TinyMemoryModelSupport>False</TinyMemoryModelSupport>
+      <GeneratePreprocessedSourceListing>False</GeneratePreprocessedSourceListing>
+      <ListAllAvailableInformation>False</ListAllAvailableInformation>
+      <UseSafeExceptionHandlers>False</UseSafeExceptionHandlers>
+      <AddFirstPassListing>False</AddFirstPassListing>
+      <EnableAssemblyGeneratedCodeListing>False</EnableAssemblyGeneratedCodeListing>
+      <DisableSymbolTable>False</DisableSymbolTable>
+      <EnableFalseConditionalsInListing>False</EnableFalseConditionalsInListing>
+      <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+      <MakeAllSymbolsPublic>False</MakeAllSymbolsPublic>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableMASM51Compatibility>False</EnableMASM51Compatibility>
+      <PerformSyntaxCheckOnly>False</PerformSyntaxCheckOnly>
+      <ObjectFileName>$(IntDir)%(Filename).obj</ObjectFileName>
+      <PreserveIdentifierCase>0</PreserveIdentifierCase>
+      <WarningLevel>3</WarningLevel>
+      <PackAlignmentBoundary>0</PackAlignmentBoundary>
+      <CallingConvention>0</CallingConvention>
+      <ErrorReporting>0</ErrorReporting>
+      <CommandLineTemplate>ml64.exe /c [AllOptions] [AdditionalOptions] /Ta[inputs]</CommandLineTemplate>
+      <Outputs>%(ObjectFileName)</Outputs>
+      <ExecutionDescription>Assembling...</ExecutionDescription>
+    </MASM>
+  </ItemDefinitionGroup>
+</Project>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema
+      Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+    <AvailableItemName
+      Include="MASM">
+      <Targets>_MASM</Targets>
+    </AvailableItemName>
+  </ItemGroup>
+  <UsingTask
+    TaskName="MASM"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <Target
+    Name="_MASM"
+    BeforeTargets="$(MASMBeforeTargets)"
+    AfterTargets="$(MASMAfterTargets)"
+    Condition="'@(MASM)' != ''"
+    DependsOnTargets="$(MASMDependsOn);ComputeMASMOutput"
+    Outputs="@(MASM-&gt;Metadata('Outputs')-&gt;Distinct())"
+    Inputs="@(MASM);%(MASM.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <MASM
+        Remove="@(MASM)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <MASM_tlog
+        Include="%(MASM.Outputs)"
+        Condition="'%(MASM.Outputs)' != '' and '%(MASM.ExcludedFromBuild)' != 'true'">
+        <Source>@(MASM, '|')</Source>
+      </MASM_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(MASM.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(MASM_tlog)' != '' and '%(MASM_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(IntDir)$(ProjectName).write.1.tlog"
+      Lines="^%(MASM_tlog.Source);@(MASM_tlog-&gt;'%(Fullpath)')" />
+    <MASM
+      Condition="'@(MASM)' != '' and '%(MASM.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(MASM.CommandLineTemplate)"
+      NoLogo="%(MASM.NoLogo)"
+      TinyMemoryModelSupport="%(MASM.TinyMemoryModelSupport)"
+      GeneratePreprocessedSourceListing="%(MASM.GeneratePreprocessedSourceListing)"
+      ListAllAvailableInformation="%(MASM.ListAllAvailableInformation)"
+      UseSafeExceptionHandlers="%(MASM.UseSafeExceptionHandlers)"
+      AddFirstPassListing="%(MASM.AddFirstPassListing)"
+      EnableAssemblyGeneratedCodeListing="%(MASM.EnableAssemblyGeneratedCodeListing)"
+      DisableSymbolTable="%(MASM.DisableSymbolTable)"
+      EnableFalseConditionalsInListing="%(MASM.EnableFalseConditionalsInListing)"
+      TreatWarningsAsErrors="%(MASM.TreatWarningsAsErrors)"
+      MakeAllSymbolsPublic="%(MASM.MakeAllSymbolsPublic)"
+      GenerateDebugInformation="%(MASM.GenerateDebugInformation)"
+      EnableMASM51Compatibility="%(MASM.EnableMASM51Compatibility)"
+      PerformSyntaxCheckOnly="%(MASM.PerformSyntaxCheckOnly)"
+      ObjectFileName="%(MASM.ObjectFileName)"
+      PreprocessorDefinitions="%(MASM.PreprocessorDefinitions)"
+      AssembledCodeListingFile="%(MASM.AssembledCodeListingFile)"
+      SourceListingLineWidth="%(MASM.SourceListingLineWidth)"
+      SourceListingPageLength="%(MASM.SourceListingPageLength)"
+      IncludePaths="%(MASM.IncludePaths)"
+      SourceListingSubTitle="%(MASM.SourceListingSubTitle)"
+      SourceListingTitle="%(MASM.SourceListingTitle)"
+      BrowseFile="%(MASM.BrowseFile)"
+      PreserveIdentifierCase="%(MASM.PreserveIdentifierCase)"
+      WarningLevel="%(MASM.WarningLevel)"
+      PackAlignmentBoundary="%(MASM.PackAlignmentBoundary)"
+      CallingConvention="%(MASM.CallingConvention)"
+      ErrorReporting="%(MASM.ErrorReporting)"
+      AdditionalOptions="%(MASM.AdditionalOptions)"
+      Inputs="@(MASM)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            ComputeMASMOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            ComputeMASMOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="ComputeMASMOutput"
+    Condition="'@(MASM)' != ''">
+    <ItemGroup>
+      <MASMDirsToMake
+        Condition="'@(MASM)' != '' and '%(MASM.ExcludedFromBuild)' != 'true'"
+        Include="%(MASM.Outputs)" />
+      <Link
+        Include="%(MASMDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(MASMDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(MASMDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(MASMDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+</Project>

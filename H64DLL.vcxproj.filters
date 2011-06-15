@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3e7b29aa-2d3b-46aa-906e-74cd43be3774}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ASM">
+      <UniqueIdentifier>{8e770953-0bd3-40d9-b670-1c8120c46cb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HOOKS">
+      <UniqueIdentifier>{d173793c-3d69-442e-9135-018899732769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FRAMEWORK">
+      <UniqueIdentifier>{5b31c202-322c-499f-b09f-acc6c976cf9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{c7442f0a-a2e4-4ffb-8749-b2381f70947c}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="Header Files\HOOKS">
+      <UniqueIdentifier>{48acbc48-e6fa-4a01-9bf4-eac3a4264174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FRAMEWORK">
+      <UniqueIdentifier>{c02f63cc-70e1-4061-9bf1-b258b33d4ce4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileCapture.cpp">
+      <Filter>Source Files\HOOKS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hiding.cpp">
+      <Filter>Source Files\HOOKS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Keylog_Mouse.cpp">
+      <Filter>Source Files\HOOKS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Snapshots.cpp">
+      <Filter>Source Files\HOOKS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common.cpp">
+      <Filter>Source Files\FRAMEWORK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DriverAccess.cpp">
+      <Filter>Source Files\FRAMEWORK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hooking.cpp">
+      <Filter>Source Files\FRAMEWORK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IPC.cpp">
+      <Filter>Source Files\FRAMEWORK</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="src\AsmHooks.asm">
+      <Filter>Source Files\ASM</Filter>
+    </MASM>
+    <MASM Include="src\OpCodeParse.asm">
+      <Filter>Source Files\ASM</Filter>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\FileCapture.h">
+      <Filter>Header Files\HOOKS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hiding.h">
+      <Filter>Header Files\HOOKS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Keylog_Mouse.h">
+      <Filter>Header Files\HOOKS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Snapshots.h">
+      <Filter>Header Files\HOOKS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common.h">
+      <Filter>Header Files\FRAMEWORK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DriverAccess.h">
+      <Filter>Header Files\FRAMEWORK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hooking.h">
+      <Filter>Header Files\FRAMEWORK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IPC.h">
+      <Filter>Header Files\FRAMEWORK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\missing.h">
+      <Filter>Header Files\FRAMEWORK</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="H64-DLL.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
