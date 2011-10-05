@@ -19,7 +19,7 @@ char SHARE_MEMORY_WRITE_NAME[MAX_RAND_NAME];
 #pragma comment(linker, "/section:shared,RWS")
 
 WCHAR *process_bypassed[] = {L"sargui64.exe", 
-                             L"HTtest64.exe", 
+                             L"fsscoepl_x64.exe", 
 							 NULL };
 
 #define OLD_SHARE_MEMORY_READ_NAME "KB037H1"
