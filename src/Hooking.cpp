@@ -379,7 +379,7 @@ void __stdcall H64_MakeHooking(void)
 	MAKE_HOOK("ReadDirectoryChangesW", "kernel32.dll", H_ReadDirectoryChangesW, 8, CommonSetup); 
 	
 	// FileOpen e FileCapture
-	MAKE_HOOK("CreateFileW", "kernel32.dll", H_CreateFileW, 7, CommonSetup); 
+	MAKE_HOOK("CreateFileW", "kernelbase.dll", H_CreateFileW, 7, CommonSetup); 
 	MAKE_HOOK("DeleteFileW", "kernelbase.dll", H_DeleteFileW, 1, CommonSetup); 
 	MAKE_HOOK("MoveFileW", "kernel32.dll", H_MoveFileW, 2, CommonSetup); 
 
