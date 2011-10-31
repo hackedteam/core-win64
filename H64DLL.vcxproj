@@ -215,6 +215,7 @@
     <ClCompile Include="src\DriverAccess.cpp" />
     <ClCompile Include="src\Hooking.cpp" />
     <ClCompile Include="src\IPC.cpp" />
+    <ClCompile Include="src\Url.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="src\AsmHooks.asm" />
@@ -230,6 +231,7 @@
     <ClInclude Include="src\Hooking.h" />
     <ClInclude Include="src\IPC.h" />
     <ClInclude Include="src\missing.h" />
+    <ClInclude Include="src\Url.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="H64-DLL.def" />

