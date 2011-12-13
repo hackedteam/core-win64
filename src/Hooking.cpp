@@ -271,7 +271,7 @@ BOOL HookDLLFunction(char *func_name, char *dll_name, BYTE *hook_add, DWORD hook
 	BYTE *local_hook_add = NULL;
 	BYTE *local_data_add = NULL;
 	DWORD rewritten_bytes;
-	BYTE jmp_code[9] = { 0x48, 0xC7, 0xC0, 0, 0, 0, 0, 0xFF, 0xE0 };
+	BYTE jmp_code[12] = { 0x48, 0xB8, 0, 0, 0, 0, 0, 0, 0, 0, 0xFF, 0xE0 };
 
 	common_data = (CommonDataStruct *)data_add;
 	// Se specifico una DLL e una funzione, le cerca
@@ -293,7 +293,7 @@ BOOL HookDLLFunction(char *func_name, char *dll_name, BYTE *hook_add, DWORD hook
 	// Alloca codice e dati
 	local_hook_add = (BYTE *)VirtualAlloc(NULL, hook_len, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
 	local_data_add = (BYTE *)VirtualAlloc(NULL, data_len, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
-	if (!local_hook_add || !local_data_add || local_hook_add>ADDR_LIMIT || local_data_add>ADDR_LIMIT) {
+	if (!local_hook_add || !local_data_add) {
 		SAFE_VFREE(local_hook_add);
 		SAFE_VFREE(local_data_add);
 		return FALSE;
@@ -308,10 +308,10 @@ BOOL HookDLLFunction(char *func_name, char *dll_name, BYTE *hook_add, DWORD hook
 	// Setta nel callstub i 3 parametri necessari (indirizzo hook, indirizzo ai dati, numero di parametri)
 	for (call_offs=0; *(common_data->CallStub + call_offs) != 0x67 && call_offs<CODE_PATCH_LIMIT; call_offs++);
 	if (call_offs<CODE_PATCH_LIMIT) // 0x67 -> Indirizzo della funzione hook
-		memcpy(common_data->CallStub + call_offs, &local_hook_add, 4);
+		memcpy(common_data->CallStub + call_offs, &local_hook_add, 8);
 	for (call_offs=0; *(common_data->CallStub + call_offs) != 0x69 && call_offs<CODE_PATCH_LIMIT; call_offs++);
 	if (call_offs<CODE_PATCH_LIMIT) // 0x69 -> Puntatore ai dati
-		memcpy(common_data->CallStub + call_offs, &local_data_add, 4);
+		memcpy(common_data->CallStub + call_offs, &local_data_add, 8);
 	if (arg_count>=4) {
 		for (call_offs=0; *(common_data->CallStub + call_offs) != 0x66 && call_offs<CODE_PATCH_LIMIT; call_offs++);
 		if (call_offs<CODE_PATCH_LIMIT) // 0x66 -> numero di parametri
@@ -336,7 +336,7 @@ BOOL HookDLLFunction(char *func_name, char *dll_name, BYTE *hook_add, DWORD hook
 
 	// Sostituisce i primi byte della funzione da hookare con una JMP
 	trampoline = local_data_add + sizeof(common_data->OriginalCode); // Il call stub e' la seconda entry
-	memcpy(jmp_code + 3, &trampoline, 4);
+	memcpy(jmp_code + 2, &trampoline, 8);
 
 	h_proc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, GetCurrentProcessId());
 	if (h_proc) {

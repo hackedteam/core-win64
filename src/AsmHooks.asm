@@ -12,8 +12,8 @@ CALLSTUB1 PROC
 	mov r9, r8
 	mov r8, rdx
 	mov	rdx, rcx
-	mov rcx, 69696969h	; Puntatore ai dati 	
-	mov	rax, 67676767h	; Indirizzo della funzione hook
+	mov rcx, 6969696969696969h	; Puntatore ai dati 	
+	mov	rax, 6767676767676767h	; Indirizzo della funzione hook
 	jmp rax
 		
 	ret
@@ -52,8 +52,8 @@ CALLSTUB2 PROC
 	push rax			; r9 va sullo stack
 	sub rsp, 20h
 	
-	mov rcx, 69696969h	; Puntatore ai dati 	
-	mov	rax, 67676767h	; Indirizzo della funzione hook
+	mov rcx, 6969696969696969h	; Puntatore ai dati 	
+	mov	rax, 6767676767676767h	; Indirizzo della funzione hook
 	call rax
 	
 	mov rsp, rbp
