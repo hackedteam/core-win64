@@ -34,7 +34,7 @@ HWND _stdcall H_CreateWindowExHook(void *data_param,
 BOOL H_CreateWindowEx_setup(H_CreateWindowExStruct *data)
 {
 	// XXX - A iexplore a 64bit non piace che gli si hookino queste funzioni 
-	if (AmIThis(L"iexplore.exe"))
+	if (AmIThis(L"iexplore.exe") || AmIThis(L"notepad.exe"))
 		return FALSE;
 	return TRUE;
 }
