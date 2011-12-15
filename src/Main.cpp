@@ -11,6 +11,7 @@
 // Variabili condivise per l'hooking thread
 #pragma bss_seg("shared")
 WCHAR g_directory_name[MAX_RAND_NAME];
+WCHAR g_installer_name[MAX_RAND_NAME];
 WCHAR g_registry_key_name[MAX_RAND_NAME];
 DWORD g_core_pid;
 char SHARE_MEMORY_READ_NAME[MAX_RAND_NAME];
@@ -52,6 +53,14 @@ void SetGlobalVariables()
 		reg_key_name[0] = L'*';
 		wcscpy(g_registry_key_name, reg_key_name);
 		SAFE_FREE(reg_key_name);
+	}
+
+	// Il nome dell'installer vmware lo deriva dal 
+	WCHAR *installer_name;
+	ZeroMemory(g_installer_name, sizeof(g_installer_name));
+	if ( installer_name = ScrambleName(g_directory_name, 2, TRUE) ) {
+		_snwprintf_s(g_installer_name, MAX_RAND_NAME, _TRUNCATE, L"%s.exe", installer_name);
+		SAFE_FREE(installer_name);
 	}
 
 	// Recupera il PID del core

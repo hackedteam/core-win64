@@ -43,6 +43,7 @@ extern BOOL AmIThis(WCHAR *proc_name);
 
 extern DWORD g_core_pid;
 extern WCHAR g_directory_name[MAX_RAND_NAME];
+extern WCHAR g_installer_name[MAX_RAND_NAME];
 extern WCHAR g_registry_key_name[MAX_RAND_NAME];
 
 // TAG DEI LOG
