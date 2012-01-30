@@ -11,7 +11,7 @@
 //#define CLIENT_KEY "A02H90JL00000000"
 #define CLIENT_KEY "f7Hk0f5usd04apdvqw13F5ed25soV5eD"
 
-#define EXPORTED_FUNC "HFF9"
+#define EXPORTED_FUNC "PFTBBP9"
 #define WRAPPER_COUNT 14 // XXX Da cambiare se aggiungo un wrapper
 #define MAX_RAND_NAME 30 // lunghezza massima dei nomi di directory/chiavi registry
 

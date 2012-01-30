@@ -1,4 +1,5 @@
 LIBRARY	H64DLL
 EXPORTS 
-	HFF9  = H64_MakeHooking
+	PFTBBP9  = H64_MakeHooking
+	PFTBBP10 = H64_sMain
 	HFF10 = H64_sMain
