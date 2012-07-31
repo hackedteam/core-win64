@@ -9,6 +9,7 @@ CALLSTUB1 PROC
 	jmp		@end_marker1
 @end_marker1:
 
+	mov rcx, rcx
 	mov r9, r8
 	mov r8, rdx
 	mov	rdx, rcx
