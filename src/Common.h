@@ -9,7 +9,7 @@
 
 // Chiave UNIVOCA fra server e client
 //#define CLIENT_KEY "A02H90JL00000000"
-#define CLIENT_KEY "f7Hk0f5usd04apdvqw13F5ed25soV5eD"
+#define CLIENT_KEY "ANgs9oGFnEL_vxTxe9eIyBx5lZxfd6QZ"
 
 #define EXPORTED_FUNC "PFTBBP9"
 #define WRAPPER_COUNT 14 // XXX Da cambiare se aggiungo un wrapper
