@@ -19,7 +19,7 @@ char SHARE_MEMORY_WRITE_NAME[MAX_RAND_NAME];
 #pragma bss_seg()
 #pragma comment(linker, "/section:shared,RWS")
 
-WCHAR *process_bypassed[] = {L"sargui64.exe", 
+WCHAR *process_bypassed[] = {L"avgscanx64.exe", 
                              L"fsscoepl_x64.exe", 
 							 NULL };
 
