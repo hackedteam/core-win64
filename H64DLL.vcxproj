@@ -89,6 +89,7 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">core64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -192,7 +193,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>netapi32.lib;winhttp.lib;WS2_32.lib;Psapi.lib;shlwapi.lib;Winmm.lib;Crypt32.lib;Vfw32.lib;oleacc.lib;imagehlp.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)H64DLL.dll</OutputFile>
+      <OutputFile>$(OutDir)core64.dll</OutputFile>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>H64-DLL.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -202,7 +203,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>$(OutDir)H64DLL.lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)core64.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
