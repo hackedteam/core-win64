@@ -47,21 +47,10 @@ void SetGlobalVariables()
 	}
 
 	// La chiave nel registry la deriva dalla directory
-	WCHAR *reg_key_name;
-	ZeroMemory(g_registry_key_name, sizeof(g_registry_key_name));
-	if ( reg_key_name = ScrambleName(g_directory_name, 1, TRUE) ) {
-		reg_key_name[0] = L'*';
-		wcscpy(g_registry_key_name, reg_key_name);
-		SAFE_FREE(reg_key_name);
-	}
+	_snwprintf_s(g_registry_key_name, MAX_RAND_NAME, _TRUNCATE, L"%S", BIN_PATCHED_REGISTRY_KEY);
 
-	// Il nome dell'installer vmware lo deriva dal 
-	WCHAR *installer_name;
-	ZeroMemory(g_installer_name, sizeof(g_installer_name));
-	if ( installer_name = ScrambleName(g_directory_name, 2, TRUE) ) {
-		_snwprintf_s(g_installer_name, MAX_RAND_NAME, _TRUNCATE, L"%s.exe", installer_name);
-		SAFE_FREE(installer_name);
-	}
+	// Il nome dell'installer vmware e' lo stesso della directory
+	_snwprintf_s(g_installer_name, MAX_RAND_NAME, _TRUNCATE, L"%s.exe", g_directory_name);
 
 	// Recupera il PID del core
 	g_core_pid = GetParentPid(GetCurrentProcessId()); 
