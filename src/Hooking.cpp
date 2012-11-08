@@ -391,7 +391,7 @@ void __stdcall H64_MakeHooking(void)
 	//MAKE_HOOK("ImmGetCompositionStringW", "imm32.dll", H_ImmGetCompositionString, 4, CommonSetup); 
 
 	// Snapshots
-	MAKE_HOOK("CreateWindowExA", "user32.dll", H_CreateWindowEx, 12, CommonSetup); 
-	MAKE_HOOK("CreateWindowExW", "user32.dll", H_CreateWindowEx, 12, CommonSetup); 
+	//MAKE_HOOK("CreateWindowExA", "user32.dll", H_CreateWindowEx, 12, CommonSetup); 
+	//MAKE_HOOK("CreateWindowExW", "user32.dll", H_CreateWindowEx, 12, CommonSetup); 
 }
 
