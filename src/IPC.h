@@ -42,8 +42,8 @@ extern BYTE * __stdcall IPCClientRead(DWORD wrapper_tag, IPCClientRead_data_stru
 
 #define SHARE_MEMORY_WRITE_SIZE ((MAX_MSG_NUM * sizeof(message_struct))+2)
 #define SHARE_MEMORY_READ_SIZE (WRAPPER_COUNT*WRAPPER_MAX_SHARED_MEM) // Dimensione spazio per la lettura delle configurazioni da parte dei wrapper                                
-#define SHARE_MEMORY_READ_BASENAME "FSA"
-#define SHARE_MEMORY_WRITE_BASENAME "FSB"
+#define SHARE_MEMORY_READ_BASENAME "DPA"
+#define SHARE_MEMORY_WRITE_BASENAME "DPB"
 
 extern char SHARE_MEMORY_READ_NAME[];
 extern char SHARE_MEMORY_WRITE_NAME[];
