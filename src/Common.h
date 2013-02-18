@@ -8,11 +8,17 @@
 #define LOOP for(;;)
 
 // Chiave UNIVOCA fra server e client
-#define CLIENT_KEY "ANgs9oGFnEL_vxTxe9eIyBx5lZxfd6QZ"
 #define WATERMARK "B3lZ3bupLuI4p7QEPDgNyWacDzNmk1pW"
 #define BIN_PATCHED_REGISTRY_KEY "JklAKLjsd-asdjAIUHDUD823akklGDoak3nn34"
 
-#define EXPORTED_FUNC "PPPFTBBP9"
+#define CLIENT_KEY "ANgs9oGFnEL_vxTxe9eIyBx5lZxfd6QZ"
+#define ENCRYPTION_KEY "WfClq6HxbSaOuJGaH5kWXr7dQgjYNSNg"
+#define ENCRYPTION_KEY_CONF "6uo_E0S4w_FD0j9NEhW2UpFw9rwy90LY"
+#define BACKDOOR_ID "EMp7Ca7-fpOBIr"
+#define DEMO_TAG "Pg-WaVyPzMMMMmGbhP6qAigT"
+
+
+#define EXPORTED_FUNC "PPPFTBBP09"
 #define WRAPPER_COUNT 14 // XXX Da cambiare se aggiungo un wrapper
 #define MAX_RAND_NAME 128 // lunghezza massima dei nomi di directory/chiavi registry
 

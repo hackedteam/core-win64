@@ -68,6 +68,14 @@ void SetGlobalVariables()
 	// Handle per verificare se un processo ha gia' la sharedmem (e' gia' hookato)
 	if (hfile = OpenFileMapping(FILE_MAP_ALL_ACCESS, FALSE, SHARE_MEMORY_READ_NAME))
 		IPC_SHM_Kernel_Object = FindTokenObject(hfile);
+
+	// Inseriti solo per usarli
+	char dummy[256];
+	_snprintf_s(dummy, 256, _TRUNCATE, "%s", CLIENT_KEY);
+	_snprintf_s(dummy, 256, _TRUNCATE, "%s", ENCRYPTION_KEY);
+	_snprintf_s(dummy, 256, _TRUNCATE, "%s", ENCRYPTION_KEY_CONF);
+	_snprintf_s(dummy, 256, _TRUNCATE, "%s", BACKDOOR_ID);
+	_snprintf_s(dummy, 256, _TRUNCATE, "%s", DEMO_TAG);
 }
 
 // Accetta sia il nome che il path del processo
