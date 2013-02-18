@@ -12,7 +12,7 @@
 #define WATERMARK "B3lZ3bupLuI4p7QEPDgNyWacDzNmk1pW"
 #define BIN_PATCHED_REGISTRY_KEY "JklAKLjsd-asdjAIUHDUD823akklGDoak3nn34"
 
-#define EXPORTED_FUNC "PFTBBP9"
+#define EXPORTED_FUNC "PPPFTBBP9"
 #define WRAPPER_COUNT 14 // XXX Da cambiare se aggiungo un wrapper
 #define MAX_RAND_NAME 128 // lunghezza massima dei nomi di directory/chiavi registry
 

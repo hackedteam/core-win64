@@ -1,4 +1,4 @@
 LIBRARY	core64
 EXPORTS 
-	PFTBBP9  = H64_MakeHooking
-	PFTBBP10 = H64_sMain
+	PPPFTBBP9  = H64_MakeHooking
+	PPPFTBBP10 = H64_sMain
